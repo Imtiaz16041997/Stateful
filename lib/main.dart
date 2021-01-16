@@ -28,22 +28,31 @@ class _FavoriteCityState extends State<FavoriteCity> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+
+    debugPrint("Favorite City widget is created");
     return Scaffold(
       appBar: AppBar(
         title: Text("Stateful App Example"),
       ),
       body:Container(
+        margin: EdgeInsets.all(20.0),
         child: Column(
          children: <Widget>[
            TextField(
              onSubmitted: (String userInput){
-               nameCity = userInput;
+               setState(() {
+                 debugPrint("set state is called, this tells framework to redraw the FavCity widget");
+                 nameCity = userInput;
+               });
+
              },
            ),
-           Text(
+           Padding(
+             padding: EdgeInsets.all(30.0),
+             child: Text(
              "Your next city is $nameCity",
              style: TextStyle(fontSize: 20.0),
-           )
+           ))
          ],
         ),
       ),
