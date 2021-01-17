@@ -24,6 +24,8 @@ class FavoriteCity extends StatefulWidget{
 // "_"  is meanly using for the private class.
 class _FavoriteCityState extends State<FavoriteCity> {
   String nameCity = " ";
+  var _currencies = ['Taka', 'Dollars','Pounds','Rupees'];
+  var currentItemSelected = 'Taka';
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +49,24 @@ class _FavoriteCityState extends State<FavoriteCity> {
 
              },
            ),
+           DropdownButton<String>(
+             items: _currencies.map((String dropDownStringItem) {
+               return DropdownMenuItem<String>(
+                 value:dropDownStringItem,
+                 child: Text(dropDownStringItem),
+               );
+             }).toList(),
+
+
+             onChanged: (String newValueSelected){
+              //code to execute , when a menu item is selected from drop down appear by the user
+               _onDropDownItemSelected(newValueSelected);
+
+             },
+
+             value: currentItemSelected,
+
+           ),
            Padding(
              padding: EdgeInsets.all(30.0),
              child: Text(
@@ -57,6 +77,12 @@ class _FavoriteCityState extends State<FavoriteCity> {
         ),
       ),
     );
+  }
+
+  void _onDropDownItemSelected(String newValueSelected){
+    setState(() {
+      this.currentItemSelected = newValueSelected;
+    });
   }
 
 }
